@@ -182,6 +182,24 @@ ResultSet rs = null;
 		}
 		return result;
 	}
+	@Override
+	public boolean deleteRow(String id) {
+		String sql = "Delete from member where id='"+id+"'";
+		boolean success=false;
+		try {
+			cn = db.getConnection();
+			ps = cn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			success=true;
+			cn.close();
+			ps.close();
+			rs.close();
+		}
+	 catch (Exception e) {
+		System.out.println("error :"+e.getMessage());
+	}
+		return success;
+	}
 }
 
 
