@@ -1,5 +1,7 @@
 package kr.ac.itschool;
 
+import java.util.ArrayList;
+
 public class Member {
 	public String code;
 	public String name;
@@ -10,6 +12,11 @@ public class Member {
 	public String professor;
 	public String dept;
 	public String age;
+	public String deptcode;
+	public String deptname;
+	public String procode;
+	public String proname;
+	ArrayList<String> list = new ArrayList<String>();
 	public String getCode() {
 		return code;
 	}
@@ -64,5 +71,36 @@ public class Member {
 	public void setAge(String age) {
 		this.age = age;
 	}
+	public String getDeptcode() {
+		return deptcode;
+	}
+	public void setDeptcode(String deptcode) {
+		this.deptcode = deptcode;
+	}
+	public String getDeptname() {
+		return deptname;
+	}
+	public void setDeptname(String deptname) {
+		this.deptname = deptname;
+	}
+	public String getProcode() {
+		return procode;
+	}
+	public void setProcode(String procode) {
+		this.procode = procode;
+	}
+	public String getProname() {
+		return proname;
+	}
+	public void setProname(String proname) {
+		this.proname = proname;
+	}
+	public ArrayList<String> getList() {
+		return list;
+	}
+	public void setList(ArrayList<String> list) {
+		this.list = list;
+	}
+
 	
 }

@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -36,10 +37,34 @@ public class mouselistener implements MouseListener {
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		if(stutable.getSelectedRow() == -1){
+			JOptionPane.showMessageDialog(code, "항목을 선택하세요");
+			return;
+		}
 		 String select = (String) model.getValueAt(stutable.getSelectedRow(), 0);
-		service.selectrow(select);
+		 Member member = service.selectrow(select);
+		code.setText(member.getCode());
+		name.setText(member.getName());
+		idcard.setText(member.getIdcard());
+		postno.setText(member.getPostno());
+		addr1.setText(member.getAddr1());
+		addr2.setText(member.getAddr2());
+		age.setText(member.getAge());
 		
+		if(e.getButton() == 3){
+			int result = JOptionPane.showConfirmDialog(code, "삭제하겠습니까","경고",JOptionPane.YES_NO_OPTION);
+			if(result == 0){
+			 String cod = (String) model.getValueAt(stutable.getSelectedRow(), 0);
+			 boolean find = service.studentfind(cod);
+			 if(find){
+				 JOptionPane.showMessageDialog(code, "자식레코드가 있어 삭제할수없습니다.");
+				 return;
+			 }
+			 service.deleterow(cod);
+			 JOptionPane.showMessageDialog(code, "삭제완료");
+			 model.removeRow(stutable.getSelectedRow());
+			}
+		}
 	}
 
 	@Override

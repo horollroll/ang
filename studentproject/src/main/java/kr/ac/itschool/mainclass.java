@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class mainclass {
 
 	public static void main(String[] args) {
+		DaoService service = new DaoService();
 		JFrame frame = new JFrame("메인");
 		frame.setPreferredSize(new Dimension(300, 400));
 		frame.setLocation(600,250);
@@ -59,10 +61,14 @@ public class mainclass {
 		JLabel addr2label = new JLabel();
 		JTextField addr2 = new JTextField();
 		JLabel professorlabel = new JLabel("지도교수");
-		String professorboxarr[] = { "3001" , "3002" , "3003"} ;
+		String professorboxarr[] = { "3001" , "3002" , "3003","3004","3005","3006","3007","3008"} ;
+		ArrayList<String> prolist = service.procombobox(professorboxarr);
+		professorboxarr = prolist.toArray(new String[prolist.size()]);
 		JComboBox professor = new JComboBox(professorboxarr);
 		JLabel deptlabel = new JLabel("학과");
-		String deptboxarr[] = { "10001","10002","10003"};
+		String deptboxarr[] = { "10001","10002","10003","10004","10005","10006","10007","10008"};
+		ArrayList<String> deplist = service.deptcombobox(deptboxarr);
+		deptboxarr = deplist.toArray(new String[deplist.size()]);
 		JComboBox dept = new JComboBox(deptboxarr);
 		JLabel agelabel = new JLabel("나이");
 		JTextField age = new JTextField();
@@ -198,7 +204,7 @@ public class mainclass {
 		professbutton.addActionListener(framelistener);
 		studentbutton.addActionListener(framelistener);
 		
-		ActionListener stubuttonlistener = new stuButtonlistener(frame,studentframe,code,name,idcard,postno,addr1,addr2,professor,dept,age,model,stusearchfield);
+		ActionListener stubuttonlistener = new stuButtonlistener(frame,studentframe,code,name,idcard,postno,addr1,addr2,professor,dept,age,model,stusearchfield,stutable);
 		stuinsert.addActionListener(stubuttonlistener);
 		stuupdate.addActionListener(stubuttonlistener);
 		studelete.addActionListener(stubuttonlistener);
@@ -206,7 +212,7 @@ public class mainclass {
 		stucancel.addActionListener(stubuttonlistener);
 		stuhome.addActionListener(stubuttonlistener);
 		
-		ActionListener depbuttonlistener = new depButtonlistener(frame,deptframe,deptcode,deptname);
+		ActionListener depbuttonlistener = new depButtonlistener(frame,deptframe,deptcode,deptname,depttable,deptmodel,deptsearchfield);
 		deptinsert.addActionListener(depbuttonlistener);
 		deptupdate.addActionListener(depbuttonlistener);
 		deptdelete.addActionListener(depbuttonlistener);
@@ -214,7 +220,7 @@ public class mainclass {
 		deptcancel.addActionListener(depbuttonlistener);
 		depthome.addActionListener(depbuttonlistener);
 		
-		ActionListener probuttonlistener = new proButtonlistener(frame,proframe,procode,proname);
+		ActionListener probuttonlistener = new proButtonlistener(frame,proframe,procode,proname,protable,promodel,prosearchfield);
 		proinsert.addActionListener(probuttonlistener);
 		proupdate.addActionListener(probuttonlistener);
 		prodelete.addActionListener(probuttonlistener);
@@ -224,6 +230,12 @@ public class mainclass {
 		
 		MouseListener mouselistener = new mouselistener(frame,studentframe,code,name,idcard,postno,addr1,addr2,professor,dept,age,model,stusearchfield,stutable);
 		stutable.addMouseListener(mouselistener);
+		
+		MouseListener deptmouselistener = new deptmouselistener(frame,deptframe,deptcode,deptname,depttable,deptmodel,deptsearchfield);
+		depttable.addMouseListener(deptmouselistener);
+		
+		MouseListener promouselistener = new promouselistener(frame,proframe,procode,proname,protable,promodel,prosearchfield);
+		protable.addMouseListener(promouselistener);
 		
 		frame.pack();
 		frame.setVisible(true);
