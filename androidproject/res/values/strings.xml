@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">money</string>
+    <string name="intent_name">Respect</string>
+    <string name="listview_name">hyunpilist</string>
+    
+    <string name="hello_world">Hello java!</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

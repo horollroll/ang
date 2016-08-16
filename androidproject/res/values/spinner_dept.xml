@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string-array name="dept">
+	    <item>Computer</item>
+	    <item>Commuinication</item>
+	    <item>Architecture</item>
+	    <item>Management</item>
+	    <item>English</item>
+	    <item>Hiphop</item>
+	</string-array>
+</resources>
